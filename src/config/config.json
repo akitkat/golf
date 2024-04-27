@@ -1,0 +1,17 @@
+{
+  "site": {
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/images/favicon.png"
+  },
+
+  "settings": {
+    "pagination": 5,
+    "summary_length": 100
+  },
+
+  "metadata": {
+    "meta_image": "/images/og-image.png",
+    "meta_description": "日本各地の温泉情報満載！こころもからだも温泉でリフレッシュ！"
+  }
+}

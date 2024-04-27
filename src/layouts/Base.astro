@@ -1,0 +1,139 @@
+---
+import TwSizeIndicator from "@components/TwSizeIndicator.astro";
+import config from "@config/config.json";
+import { plainify } from "@lib/utils/textConverter";
+import Footer from "@partials/Footer.astro";
+import Header from "@partials/Header.astro";
+import "@styles/style.scss";
+
+const siteBaseUrl = import.meta.env.SITE_BASE_URL;
+const siteTitle = import.meta.env.SITE_TITLE;
+
+// types for frontmatters
+export interface Props {
+  title?: string;
+  meta_title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  canonical?: string;
+  amp_url?: string;
+  json_ld?: object;
+}
+
+// distructure frontmatters
+const { title, meta_title, description, image, noindex, canonical, amp_url, json_ld } =
+  Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href={config.site.favicon} />
+    <!-- theme meta -->
+    <meta name="theme-name" content="bookworm-light-astro" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#fff"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#000"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- responsive meta -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5"
+    />
+
+    <!-- title -->
+    <title>
+      {plainify(meta_title ? meta_title : title ? title : siteTitle)}
+    </title>
+
+    <!-- canonical url -->
+    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+    {amp_url && <link rel="amphtml" href={amp_url} />}
+
+    <!-- noindex robots -->
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <!-- meta-description -->
+    <meta
+      name="description"
+      content={plainify(
+        description ? description : config.metadata.meta_description
+      )}
+    />
+
+    <!-- author from config.json -->
+    <meta name="author" content={siteTitle} />
+
+    <!-- og-title -->
+    <meta
+      property="og:title"
+      content={plainify(
+        meta_title ? meta_title : title ? title : siteTitle
+      )}
+    />
+
+    <!-- og-description -->
+    <meta
+      property="og:description"
+      content={plainify(
+        description ? description : config.metadata.meta_description
+      )}
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content={`${siteBaseUrl}/${Astro.url.pathname.replace("/", "")}`}
+    />
+
+    <!-- twitter-title -->
+    <meta
+      name="twitter:title"
+      content={plainify(
+        meta_title ? meta_title : title ? title : siteTitle
+      )}
+    />
+
+    <!-- twitter-description -->
+    <meta
+      name="twitter:description"
+      content={plainify(
+        description ? description : config.metadata.meta_description
+      )}
+    />
+
+    <meta property="og:image" content={image ? image : config.metadata.meta_image}/>
+    <meta name="twitter:image" content={image ? image : config.metadata.meta_image} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-R6LV8056Y0"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R6LV8056Y0');
+    </script>
+    {json_ld && <script type="application/ld+json" set:html={JSON.stringify(json_ld)}/>}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body>
+    <TwSizeIndicator />
+    <Header />
+    <main id="main-content" class="min-h-[60vh]">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

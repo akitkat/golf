@@ -1,0 +1,45 @@
+{
+  "name": "onsen-astro",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "./build.sh",
+    "format": "prettier -w .",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^2.0.1",
+    "@astrojs/partytown": "^2.0.3",
+    "@astrojs/rss": "^4.0.1",
+    "astro": "^4.0.4",
+    "cheerio": "^1.0.0-rc.12",
+    "contentful": "^10.6.14",
+    "date-fns": "^2.29.3",
+    "date-fns-tz": "^2.0.0",
+    "dotenv": "^16.3.1",
+    "fuse.js": "^6.6.2",
+    "github-slugger": "^2.0.0",
+    "globby": "^14.0.0",
+    "marked": "^4.2.12",
+    "node-fetch": "^3.3.2",
+    "react-icons": "^4.7.1"
+  },
+  "devDependencies": {
+    "@astrojs/react": "^3.0.7",
+    "@astrojs/sitemap": "^3.0.3",
+    "@astrojs/tailwind": "^5.0.3",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/marked": "^4.0.8",
+    "@types/react": "^18.0.28",
+    "postcss": "^8.4.20",
+    "prettier": "^2.8.4",
+    "prettier-plugin-astro": "^0.8.0",
+    "prettier-plugin-tailwindcss": "^0.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.58.1",
+    "sharp": "^0.33.0",
+    "tailwind-bootstrap-grid": "^5.0.1",
+    "tailwindcss": "^3.2.6"
+  }
+}

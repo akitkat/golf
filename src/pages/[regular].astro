@@ -1,0 +1,100 @@
+---
+import Base from "@layouts/Base.astro";
+import Default from "@layouts/Default.astro";
+import PostSingle from "@layouts/PostSingle.astro";
+import { getSinglePage } from "@lib/contentParser.astro";
+import config from "../config/config.json";
+
+const siteBaseUrl = import.meta.env.SITE_BASE_URL;
+const siteTitle = import.meta.env.SITE_TITLE;
+const getPosts = await getSinglePage("posts");
+const postsSlug = getPosts.map((item) => item.slug);
+
+export async function getStaticPaths() {
+  const posts = await getSinglePage("posts");
+  const pages = await getSinglePage("pages");
+  const allPages = [...pages, ...posts];
+
+  const paths = allPages.map((page) => ({
+    params: {
+      regular: page.slug,
+    },
+    props: { page },
+  }));
+  return paths;
+}
+
+const { page } = Astro.props;
+const { slug } = page;
+const ampUrl = `${siteBaseUrl}/amp/${slug}/`;
+const { title, meta_title, description, image, date, date_modified, tags } = page.data;
+const jsonLd = [
+  {
+    "@context" : "http://schema.org",
+    "@type" : "Article",
+    "author" : {
+      "@type" : "Person",
+      "name" : "akitkat"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": siteTitle,
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://on-sen.work/icons/icon-144x144.png"
+      }
+    },
+    "headline": title,
+    "datePublished" : date,
+    "dateModified": date_modified,
+    "image" : image,
+  },
+]
+
+const breadCrumbs = {
+  "@context":"https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "name": "Home",
+      "item": siteBaseUrl
+    },
+  ]
+}
+
+if (postsSlug.includes(page.slug)) {
+  if (tags !== undefined && tags[0]) {
+    breadCrumbs['itemListElement'].push({
+      "@type": "ListItem",
+      "name": tags[0],
+      "item": `${siteBaseUrl}/tags/${tags[0]}/`
+    })
+  }
+  breadCrumbs['itemListElement'].push({
+    "@type": "ListItem",
+    "name": title
+  })
+  breadCrumbs['itemListElement'].forEach((item, index) => {
+    item['position'] = index + 1;
+  })
+  jsonLd.push(breadCrumbs);
+}
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+  amp_url={postsSlug.includes(page.slug) ? ampUrl : ''}
+  json_ld={jsonLd}
+>
+  {
+    postsSlug.includes(page.slug) ? (
+      <PostSingle post={page} />
+    ) : (
+      <Default data={page} />
+    )
+  }
+</Base>

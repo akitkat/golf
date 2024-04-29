@@ -8,6 +8,7 @@ import "@styles/style.scss";
 
 const siteBaseUrl = import.meta.env.SITE_BASE_URL;
 const siteTitle = import.meta.env.SITE_TITLE;
+const googleAnalyticsGa4 = import.meta.env.GOOGLE_ANALYTICS_GA4;
 
 // types for frontmatters
 export interface Props {
@@ -118,12 +119,12 @@ const { title, meta_title, description, image, noindex, canonical, amp_url, json
     <meta name="twitter:image" content={image ? image : config.metadata.meta_image} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-R6LV8056Y0"></script>
+    <script type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsGa4}`}></script>
     <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-R6LV8056Y0');
+      gtag('config', googleAnalyticsGa4);
     </script>
     {json_ld && <script type="application/ld+json" set:html={JSON.stringify(json_ld)}/>}
     <link rel="sitemap" href="/sitemap-index.xml" />

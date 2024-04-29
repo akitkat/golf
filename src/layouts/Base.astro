@@ -120,7 +120,7 @@ const { title, meta_title, description, image, noindex, canonical, amp_url, json
     <meta name="twitter:card" content="summary_large_image" />
 
     <script type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsGa4}`}></script>
-    <script type="text/partytown">
+    <script type="text/partytown" define:vars={{ googleAnalyticsGa4 }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());

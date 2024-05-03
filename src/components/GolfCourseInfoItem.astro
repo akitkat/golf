@@ -41,11 +41,11 @@ const goraUrl = goraBaseUrl.replace('___URL___', encodeURIComponent(`https://boo
         { title: '住所', value: golfCourse?.address },
         { title: '最寄りのインター', value: `${golfCourse?.highway} ${golfCourse?.ic}` },
         { title: 'シューズ指定', value: golfCourse?.shoes },
-        { title: 'ドレスコード', value: golfCourse?.dressCode },
         { title: 'カート', value: golfCourse?.cartNote },
         { title: 'お風呂(温泉)', value: golfCourse?.hotSpring === 'TRUE' ? golfCourse?.hotSpringNote : 'なし'},
         { title: 'ホテル', value: golfCourse?.hotel === 'TRUE' ? 'あり' : 'なし' },
         { title: '練習場', value: golfCourse?.practiceSpace === 'TRUE' ? golfCourse?.practiceSpaceNote : 'なし' },
+        { title: 'ドレスコード', value: golfCourse?.dressCode },
       ].filter(e => e.value !== '')}
     />
   </div>

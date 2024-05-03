@@ -18,7 +18,7 @@ const goraUrl = goraBaseUrl.replace('___URL___', encodeURIComponent(`https://boo
       <a href={ goraUrl } target="_blank" rel="noopener noreferrer nofollow">
         <Image
           class="object-cover h-64 m-auto w-full rounded-lg"
-          src={ `https://gora.golf.rakuten.co.jp/img/golf/${props.id}/photo1.jpg` }
+          src={ golfCourse?.golfCourseImageUrl1 }
           alt={ `${golfCourse?.golfCourseName}` }
           width="512"
           height="512"

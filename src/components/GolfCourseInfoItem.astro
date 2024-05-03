@@ -43,7 +43,7 @@ const goraUrl = goraBaseUrl.replace('___URL___', encodeURIComponent(`https://boo
         { title: 'シューズ指定', value: golfCourse?.shoes },
         { title: 'ドレスコード', value: golfCourse?.dressCode },
         { title: 'カート', value: golfCourse?.cartNote },
-        { title: 'お風呂', value: golfCourse?.hotSpringNote },
+        { title: 'お風呂', value: golfCourse?.hotSpring === 'TRUE' ? golfCourse?.hotSpringNote : 'なし'},
         { title: 'ホテル', value: golfCourse?.hotel === 'TRUE' ? 'あり' : 'なし' },
       ].filter(e => e.value !== '')}
     />

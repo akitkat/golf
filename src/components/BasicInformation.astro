@@ -1,0 +1,14 @@
+---
+const { rows } = Astro.props;
+type Row = { title: string, value: string };
+---
+<dl class="max-w-md text-gray-900 divide-y divide-gray-200 m-0">
+  {
+    rows.map(({ title, value } : Row) => (
+      <div class="flex flex-col py-1">
+        <dt class="text-xs text-gray-500 md:text-md">{ title }</dt>
+        <dd class="text-sm font-semibold">{ value }</dd>
+      </div>
+    ))
+  }
+</dl>

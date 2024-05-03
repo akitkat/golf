@@ -4,7 +4,7 @@ import golfCourses from '../../static/data/golfCourses.json';
 const props = Astro.props;
 const golfCourse = golfCourses.find(e => e.golfCourseId === parseInt(props.id))
 const goraBaseUrl = 'https://hb.afl.rakuten.co.jp/hgc/2130bd1e.07bd3fbb.2130bd1f.58d4f382/?pc=___URL___&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9'
-const goraUrl = goraBaseUrl.replace('___URL___', encodeURIComponent('https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/110010'))
+const goraUrl = goraBaseUrl.replace('___URL___', encodeURIComponent(`https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/${golfCourse.golfCourseId}`))
 ---
 <div class="flex flex-col">
   <div>

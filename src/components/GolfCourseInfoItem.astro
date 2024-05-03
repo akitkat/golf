@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import golfCourses from '../../static/data/golfCourses.json';
+import BasicInformation from './BasicInformation.astro';
 const props = Astro.props;
 const golfCourse = golfCourses.find(e => e.golfCourseId === parseInt(props.id))
 const goraBaseUrl = 'https://hb.afl.rakuten.co.jp/hgc/2130bd1e.07bd3fbb.2130bd1f.58d4f382/?pc=___URL___&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9'
@@ -34,16 +35,18 @@ const goraUrl = goraBaseUrl.replace('___URL___', encodeURIComponent(`https://boo
     </div>
   </div>
   <div class="pt-3.5">
-    <table>
-      <tr>
-        <td>住所</td>
-        <td>{ golfCourse?.address }</td>
-      </tr>
-      <tr>
-        <td>インター</td>
-        <td>{ golfCourse?.highway }</td>
-      </tr>
-    </table>
+    <h3>{ golfCourse?.golfCourseName }の基本情報</h3>
+    <BasicInformation
+      rows={[
+        { title: '住所', value: golfCourse?.address },
+        { title: '最寄りのインター', value: `${golfCourse?.highway} ${golfCourse?.ic}` },
+        { title: 'シューズ指定', value: golfCourse?.shoes },
+        { title: 'ドレスコード', value: golfCourse?.dressCode },
+        { title: 'カート', value: golfCourse?.cartNote },
+        { title: 'お風呂', value: golfCourse?.hotSpringNote },
+        { title: 'ホテル', value: golfCourse?.hotel === 'TRUE' ? 'あり' : 'なし' },
+      ].filter(e => e.value !== '')}
+    />
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
     <a href={ goraUrl } target="_blank" rel="noopener noreferrer nofollow">

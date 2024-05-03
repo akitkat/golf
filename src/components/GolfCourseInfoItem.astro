@@ -3,16 +3,18 @@ import { Image } from 'astro:assets';
 import golfCourses from '../../static/data/golfCourses.json';
 const props = Astro.props;
 const golfCourse = golfCourses.find(e => e.golfCourseId === parseInt(props.id))
+const goraBaseUrl = 'https://hb.afl.rakuten.co.jp/hgc/2130bd1e.07bd3fbb.2130bd1f.58d4f382/?pc=___URL___&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9'
+const goraUrl = goraBaseUrl.replace('___URL___', encodeURIComponent('https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/110010'))
 ---
 <div class="flex flex-col">
   <div>
-    <a href={ golfCourse?.reserveCalUrl } target="_blank" class="no-underline" rel="noopener noreferrer nofollow">
+    <a href={ goraUrl } target="_blank" class="no-underline" rel="noopener noreferrer nofollow">
       <h2>{ golfCourse?.golfCourseName }</h2>
     </a>
   </div>
   <div class="grid grid-cols-1 mb-2.5 sm:grid-cols-2 gap-2">
     <div class="w-full h-64 mt-0 mx-auto overflow-hidden object-cover sm:m-auto">
-      <a href={ golfCourse?.reserveCalUrl } target="_blank" rel="noopener noreferrer nofollow">
+      <a href={ goraUrl } target="_blank" rel="noopener noreferrer nofollow">
         <Image
           class="object-cover h-64 m-auto w-full rounded-lg"
           src={ `https://gora.golf.rakuten.co.jp/img/golf/${props.id}/photo1.jpg` }
@@ -43,8 +45,8 @@ const golfCourse = golfCourses.find(e => e.golfCourseId === parseInt(props.id))
       </tr>
     </table>
   </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-    <a href={ golfCourse?.reserveCalUrl } target="_blank" rel="noopener noreferrer nofollow">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
+    <a href={ goraUrl } target="_blank" rel="noopener noreferrer nofollow">
       <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-full">
         楽天GORAでプランを確認する
       </button>

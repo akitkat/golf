@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import golfCourses from '../../static/data/golfCourses.json';
 import BasicInformation from './BasicInformation.astro';
+import ReviewItem from './ReviewItem.astro';
 const props = Astro.props;
 const golfCourse = golfCourses.find(e => e.golfCourseId === parseInt(props.id))
 const goraBaseUrl = 'https://hb.afl.rakuten.co.jp/hgc/2130bd1e.07bd3fbb.2130bd1f.58d4f382/?pc=___URL___&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9'
@@ -48,6 +49,28 @@ const goraUrl = goraBaseUrl.replace('___URL___', encodeURIComponent(`https://boo
         { title: 'ドレスコード', value: golfCourse?.dressCode },
       ].filter(e => e.value !== '')}
     />
+  </div>
+  <div class="pt-3.5">
+    <h3>{ golfCourse?.golfCourseName }のクチコミ</h3>
+
+    <div class="divide-y">
+      <ReviewItem
+        title={golfCourse?.rating1Title}
+        nickName={golfCourse?.rating1NickName}
+        age={golfCourse?.rating1Age}
+        sex={golfCourse?.rating1Sex}
+        evaluation={golfCourse?.rating1Evaluation}
+        comment={golfCourse?.rating1Comment}
+      />
+      <ReviewItem
+        title={golfCourse?.rating2Title}
+        nickName={golfCourse?.rating2NickName}
+        age={golfCourse?.rating2Age}
+        sex={golfCourse?.rating2Sex}
+        evaluation={golfCourse?.rating2Evaluation}
+        comment={golfCourse?.rating2Comment}
+      />
+    </div>
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
     <a href={ goraUrl } target="_blank" rel="noopener noreferrer nofollow">

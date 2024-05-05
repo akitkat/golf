@@ -76,7 +76,7 @@ const edit = async (file, urlPath) => {
 
   $('meta').removeAttr('httpequiv');
   $('section').removeAttr('height');
-  $('head').append(`<link rel="canonical" href="https://on-sen.work/${urlPath.split`/`[1]}/">`)
+  $('head').append(`<link rel="canonical" href="${process.env.SITE_BASE_URL}/${urlPath.split`/`[1]}/">`)
 
   const pictures = $('picture');
   if (pictures.length > 0) {

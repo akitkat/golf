@@ -1,7 +1,7 @@
 ---
 const { title, nickName, age, sex, evaluation, comment } = Astro.props;
 ---
-<div class="flex flex-col gap-3 py-4 md:py-8">
+<div class="flex flex-col gap-3 py-4">
   <div>
     <span class="block text-sm font-bold">{ title }</span>
     <span class="block text-sm text-gray-500">{ nickName }{age !== '' && sex !== '' ? ` (${age}${sex})` : ''}</span>

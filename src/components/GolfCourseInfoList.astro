@@ -1,7 +1,6 @@
 ---
 import GolfCourseInfoItem from "./GolfCourseInfoItem.astro";
 const { ids } = Astro.props;
-
 ---
 
 { ids.split(',').map((id: number) => <GolfCourseInfoItem id={id} />) }

@@ -2,8 +2,8 @@
 const { rows } = Astro.props;
 type Row = { title: string, value: string };
 ---
-<dl class="text-gray-900 divide-y divide-gray-200 m-0">
-  <div class="grid grid-cols-2 gap-2">
+<ul class="text-gray-900 divide-y divide-gray-200 p-0">
+  <li class="grid grid-cols-2 gap-2">
     {
       rows.map(({ title, value } : Row) => (
         <div>
@@ -12,5 +12,5 @@ type Row = { title: string, value: string };
         </div>
       ))
     }
-  </div>
-</dl>
+  </li>
+</ul>

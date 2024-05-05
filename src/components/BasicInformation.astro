@@ -2,13 +2,13 @@
 const { rows } = Astro.props;
 type Row = { title: string, value: string };
 ---
-<ul class="text-gray-900 divide-y divide-gray-200 p-0">
-  <li class="grid grid-cols-2 gap-2">
+<ul class="text-gray-900 divide-y divide-gray-200 p-0 mb-0">
+  <li class="grid grid-cols-2 gap-2 p-0">
     {
       rows.map(({ title, value } : Row) => (
         <div>
-          <dt class="text-xs text-gray-500 md:text-md">{ title }</dt>
-          <dd class="text-sm font-semibold">{ value }</dd>
+          <span class="text-xs text-gray-500 font-semibold md:text-md">{ title }</span>
+          <p class="text-sm font-semibold ps-1 m-1">{ value }</p>
         </div>
       ))
     }

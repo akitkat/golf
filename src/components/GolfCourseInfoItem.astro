@@ -51,28 +51,34 @@ const goraUrl = goraBaseUrl.replace('___URL___', encodeURIComponent(`https://boo
       ].filter(e => e.value !== '')}
     />
   </div>
-  <div class="pt-3.5">
-    <h3>{ golfCourse?.golfCourseName }のクチコミ</h3>
-
-    <div class="divide-y">
-      <ReviewItem
-        title={golfCourse?.rating1Title}
-        nickName={golfCourse?.rating1NickName}
-        age={golfCourse?.rating1Age}
-        sex={golfCourse?.rating1Sex}
-        evaluation={golfCourse?.rating1Evaluation}
-        comment={golfCourse?.rating1Comment}
-      />
-      <ReviewItem
-        title={golfCourse?.rating2Title}
-        nickName={golfCourse?.rating2NickName}
-        age={golfCourse?.rating2Age}
-        sex={golfCourse?.rating2Sex}
-        evaluation={golfCourse?.rating2Evaluation}
-        comment={golfCourse?.rating2Comment}
-      />
-    </div>
-  </div>
+  {
+    (golfCourse?.rating1Title || golfCourse?.rating2Title) && (
+      <div class="pt-3.5">
+        <h3>{ golfCourse?.golfCourseName }のクチコミ</h3>
+    
+        <div class="divide-y">
+          <ReviewItem
+            title={golfCourse?.rating1Title}
+            nickName={golfCourse?.rating1NickName}
+            age={golfCourse?.rating1Age}
+            sex={golfCourse?.rating1Sex}
+            evaluation={golfCourse?.rating1Evaluation}
+            comment={golfCourse?.rating1Comment}
+          />
+          { golfCourse?.rating2Title && (
+            <ReviewItem
+              title={golfCourse?.rating2Title}
+              nickName={golfCourse?.rating2NickName}
+              age={golfCourse?.rating2Age}
+              sex={golfCourse?.rating2Sex}
+              evaluation={golfCourse?.rating2Evaluation}
+              comment={golfCourse?.rating2Comment}
+            />
+          )}
+        </div>
+      </div>
+    )
+  }
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
     <a href={ goraUrl } target="_blank" rel="noopener noreferrer nofollow">
       <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-full">

@@ -41,6 +41,7 @@ const goraUrl = goraBaseUrl.replace('___URL___', encodeURIComponent(`https://boo
       rows={[
         { title: '住所', value: golfCourse?.address },
         { title: '最寄りのインター', value: `${golfCourse?.highway} ${golfCourse?.ic}` },
+        { title: '電車でのアクセス', value: golfCourse?.accessTrain },
         { title: 'シューズ指定', value: golfCourse?.shoes },
         { title: 'カート', value: golfCourse?.cartNote },
         { title: 'お風呂(温泉)', value: golfCourse?.hotSpring === 'TRUE' ? golfCourse?.hotSpringNote : 'なし'},

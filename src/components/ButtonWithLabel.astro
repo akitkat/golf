@@ -1,0 +1,14 @@
+---
+const { url, text, label } = Astro.props;
+---
+<div class="mx-[0] my-[30px]">
+  <a
+    href={ url }
+    class="w-full font-bold leading-normal relative inline-block px-16 py-4 cursor-pointer select-none text-center align-middle no-underline tracking-widest text-[#212529] rounded-lg relative pt-1 pr-8 pb-6 pl-14 text-[#fff] bg-[#32b16c] [box-shadow:0_5px_0_#2c9d60]"
+    target="_blank"
+    rel="noopener noreferrer nofollow"
+  >
+    { label && <span class="text-sm absolute -top-[10px] left-[calc(50% - 150px)] block w-[300px] px-[0] py-[0.2rem] text-[#32b16c] border-[2px] border-solid border-[#32b16c] rounded-lg bg-[#fff] [box-shadow:0_3px_3px_rgba(0,_0,_0,_0.2)]">{ label }</span><br> }
+    { text }
+  </a>
+</div>

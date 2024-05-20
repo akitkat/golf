@@ -1,6 +1,6 @@
 ---
 import GolfCourseInfoItem from "./GolfCourseInfoItem.astro";
-const { ids, keywords } = Astro.props;
+const { ids, keyword } = Astro.props;
 ---
 
 {
@@ -8,7 +8,7 @@ const { ids, keywords } = Astro.props;
     return (
       <GolfCourseInfoItem
         id={id}
-        keywords={keywords}
+        keyword={keyword}
       />
     )
   })

@@ -1,6 +1,15 @@
 ---
 import GolfCourseInfoItem from "./GolfCourseInfoItem.astro";
-const { ids } = Astro.props;
+const { ids, keywords } = Astro.props;
 ---
 
-{ ids.split(',').map((id: number) => <GolfCourseInfoItem id={id} />) }
+{
+  ids.split(',').map((id: number) => {
+    return (
+      <GolfCourseInfoItem
+        id={id}
+        keywords={keywords}
+      />
+    )
+  })
+}

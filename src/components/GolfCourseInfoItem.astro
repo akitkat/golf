@@ -94,7 +94,9 @@ const rakutenTravelBaseUrl = 'https://hb.afl.rakuten.co.jp/hgc/g0190dd6.uc73i72f
     </a>
   </div>
   <div class="pt-3.5">
-    <h3>{ golfCourse?.golfCourseName }の周辺のホテルを探す</h3>
+    <h3>
+      { `${props.keywords ? props.keywords : golfCourse?.golfCourseName}の周辺ホテルを探す` }
+    </h3>
 
     <ButtonWithLabel
       url={ rakutenTravelBaseUrl + encodeURIComponent(`https://search.travel.rakuten.co.jp/ds/undated/search?f_latitude=${golfCourse?.latitude}&f_longitude=${golfCourse?.longitude}&f_dai=japan&f_cd=003&f_sort=hotel&f_tab=map&f_page=1&f_hyoji=30&f_km=10.0`) }

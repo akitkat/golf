@@ -38,7 +38,9 @@ const rakutenTravelBaseUrl = 'https://hb.afl.rakuten.co.jp/hgc/g0190dd6.uc73i72f
     </div>
   </div>
   <div class="pt-3.5">
-    <h3>{ golfCourse?.golfCourseName }の基本情報</h3>
+    <h3>
+      { `${props.keyword ? props.keyword : golfCourse?.golfCourseName}のクチコミ` }
+    </h3>
     <BasicInformation
       rows={[
         { title: '住所', value: golfCourse?.address },
@@ -56,8 +58,9 @@ const rakutenTravelBaseUrl = 'https://hb.afl.rakuten.co.jp/hgc/g0190dd6.uc73i72f
   {
     (golfCourse?.rating1Title || golfCourse?.rating2Title) && (
       <div class="pt-3.5">
-        <h3>{ golfCourse?.golfCourseName }のクチコミ</h3>
-    
+        <h3>
+          { `${props.keyword ? props.keyword : golfCourse?.golfCourseName}のクチコミ` }
+        </h3>
         <div class="divide-y">
           <ReviewItem
             title={golfCourse?.rating1Title}

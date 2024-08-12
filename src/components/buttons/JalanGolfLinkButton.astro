@@ -1,0 +1,25 @@
+---
+const { url } = Astro.props;
+---
+<a href={ url } target="_blank" rel="noopener noreferrer nofollow">
+  <button
+    type="button"
+    class={[
+      'from-orange-400',
+      'via-orange-500',
+      'to-orange-600',
+      'focus:ring-orange-300',
+      'dark:focus:ring-orange-800',
+      'text-white',
+      'font-bold',
+      'bg-gradient-to-r',
+      'hover:bg-gradient-to-br',
+      'focus:ring-4',
+      'focus:outline-none',
+      'rounded-lg',
+      'py-5',
+      'w-full',
+    ].join(' ')}>
+    じゃらんでプランを確認する
+  </button>
+</a>

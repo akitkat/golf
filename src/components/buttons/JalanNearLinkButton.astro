@@ -1,0 +1,36 @@
+---
+const { latitude, longitude } = Astro.props;
+const baseUrl = 'https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3722642&pid=890557429&vc_url='
+const jalanUrl = 'https://www.jalan.net/uw/uwp1500/uww1501.do?'
+const parameters = {
+  dateUndecided: '1',
+  resetZoomLevel: '12',
+  centerPosX: longitude,
+  centerPosY: latitude,
+  zoomLevel: '12',
+  reShFlg: '1',
+}
+const url = baseUrl + encodeURIComponent(`${jalanUrl}${new URLSearchParams(parameters).toString()}`)
+---
+<a href={ url } target="_blank" rel="noopener noreferrer nofollow">
+  <button
+    type="button"
+    class={[
+      'from-orange-400',
+      'via-orange-500',
+      'to-orange-600',
+      'focus:ring-orange-300',
+      'dark:focus:ring-orange-800',
+      'text-white',
+      'font-bold',
+      'bg-gradient-to-r',
+      'hover:bg-gradient-to-br',
+      'focus:ring-4',
+      'focus:outline-none',
+      'rounded-lg',
+      'py-5',
+      'w-full',
+    ].join(' ')}>
+    じゃらんで近くホテルを探す
+  </button>
+</a>

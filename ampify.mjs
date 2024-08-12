@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 import fs from 'fs';
-import cheerio from 'cheerio'
+import * as cheerio from 'cheerio'
 import Sharp from 'sharp'
 import { globby } from 'globby'
 

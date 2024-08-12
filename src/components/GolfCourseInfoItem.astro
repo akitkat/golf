@@ -2,9 +2,9 @@
 import { Image } from 'astro:assets';
 import golfCourses from '../../static/data/golfCourses.json';
 import BasicInformation from './BasicInformation.astro';
-import ButtonWithLabel from './ButtonWithLabel.astro';
 import GoraLinkButton from './buttons/GoraLinkButton.astro';
 import JalanGolfLinkButton from './buttons/JalanGolfLinkButton.astro';
+import JalanNearLinkButton from './buttons/JalanNearLinkButton.astro';
 import RakutenTravelNearLinkButton from './buttons/RakutenTravelNearLinkButton.astro';
 import ReviewItem from './ReviewItem.astro';
 const props = Astro.props;
@@ -98,10 +98,7 @@ const vcBaseUrl = 'https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=37226
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
       <RakutenTravelNearLinkButton latitude={golfCourse?.latitude} longitude={golfCourse?.longitude} />
-      <ButtonWithLabel
-        url={ `${vcBaseUrl}&pid=890557429&vc_url=` + encodeURIComponent(`https://www.jalan.net/uw/uwp1500/uww1501.do?dateUndecided=1&resetZoomLevel=12&centerPosX=${golfCourse?.longitude}&centerPosY=${golfCourse?.latitude}&zoomLevel=12&distCd=&reShFlg=1`) }
-        text="じゃらんで近くホテルを探す"
-      />
+      <JalanNearLinkButton latitude={golfCourse?.latitude} longitude={golfCourse?.longitude} />
     </div>
   </div>
 </div>

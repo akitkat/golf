@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import golfCourses from '../../static/data/golfCourses.json';
 import BasicInformation from './BasicInformation.astro';
 import ButtonWithLabel from './ButtonWithLabel.astro';
+import GoraLinkButton from './buttons/GoraLinkButton.astro';
+import JalanGolfLinkButton from './buttons/JalanGolfLinkButton.astro';
 import ReviewItem from './ReviewItem.astro';
 const props = Astro.props;
 const golfCourse = golfCourses.find(e => e.golfCourseId === parseInt(props.id))
@@ -86,16 +88,8 @@ const vcBaseUrl = 'https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=37226
     )
   }
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-    <a href={ goraUrl } target="_blank" rel="noopener noreferrer nofollow">
-      <button type="button" class="text-white font-bold bg-gradient-to-r from-red-700 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 rounded-lg py-5 w-full">
-        楽天GORAでプランを確認する
-      </button>
-    </a>
-    <a href={ `${vcBaseUrl}&pid=890540550&vc_url=https://golf-jalan.net/${golfCourse?.clubCd}/` } target="_blank" rel="noopener noreferrer nofollow">
-      <button type="button" class="text-white font-bold bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 rounded-lg py-5 w-full">
-        じゃらんでプランを確認する
-      </button>
-    </a>
+    <GoraLinkButton url={ goraUrl } />
+    <JalanGolfLinkButton url={ `${vcBaseUrl}&pid=890540550&vc_url=https://golf-jalan.net/${golfCourse?.clubCd}/` } />
   </div>
   <div class="pt-3.5">
     <h3>

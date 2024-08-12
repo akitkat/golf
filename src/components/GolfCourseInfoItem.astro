@@ -5,12 +5,12 @@ import BasicInformation from './BasicInformation.astro';
 import ButtonWithLabel from './ButtonWithLabel.astro';
 import GoraLinkButton from './buttons/GoraLinkButton.astro';
 import JalanGolfLinkButton from './buttons/JalanGolfLinkButton.astro';
+import RakutenTravelNearLinkButton from './buttons/RakutenTravelNearLinkButton.astro';
 import ReviewItem from './ReviewItem.astro';
 const props = Astro.props;
 const golfCourse = golfCourses.find(e => e.golfCourseId === parseInt(props.id))
 const goraBaseUrl = 'https://hb.afl.rakuten.co.jp/hgc/2130bd1e.07bd3fbb.2130bd1f.58d4f382/?pc=___URL___&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9'
 const goraUrl = goraBaseUrl.replace('___URL___', encodeURIComponent(`https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/${golfCourse.golfCourseId}`))
-const rakutenTravelBaseUrl = 'https://hb.afl.rakuten.co.jp/hgc/g0190dd6.uc73i72f.g0190dd6.uc73jb24/?pc='
 const vcBaseUrl = 'https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3722642'
 ---
 <div class="flex flex-col">
@@ -96,13 +96,12 @@ const vcBaseUrl = 'https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=37226
       { `${props.keyword ? props.keyword : golfCourse?.golfCourseName}の周辺ホテルを探す` }
     </h3>
 
-    <ButtonWithLabel
-      url={ rakutenTravelBaseUrl + encodeURIComponent(`https://search.travel.rakuten.co.jp/ds/undated/search?f_latitude=${golfCourse?.latitude}&f_longitude=${golfCourse?.longitude}&f_dai=japan&f_cd=003&f_sort=hotel&f_tab=map&f_page=1&f_hyoji=30&f_km=10.0`) }
-      text="楽天トラベルで近くホテルを探す"
-    />
-    <ButtonWithLabel
-      url={ `${vcBaseUrl}&pid=890557429&vc_url=` + encodeURIComponent(`https://www.jalan.net/uw/uwp1500/uww1501.do?dateUndecided=1&resetZoomLevel=12&centerPosX=${golfCourse?.longitude}&centerPosY=${golfCourse?.latitude}&zoomLevel=12&distCd=&reShFlg=1`) }
-      text="じゃらんで近くホテルを探す"
-    />
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+      <RakutenTravelNearLinkButton latitude={golfCourse?.latitude} longitude={golfCourse?.longitude} />
+      <ButtonWithLabel
+        url={ `${vcBaseUrl}&pid=890557429&vc_url=` + encodeURIComponent(`https://www.jalan.net/uw/uwp1500/uww1501.do?dateUndecided=1&resetZoomLevel=12&centerPosX=${golfCourse?.longitude}&centerPosY=${golfCourse?.latitude}&zoomLevel=12&distCd=&reShFlg=1`) }
+        text="じゃらんで近くホテルを探す"
+      />
+    </div>
   </div>
 </div>

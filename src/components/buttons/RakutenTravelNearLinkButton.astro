@@ -1,0 +1,39 @@
+---
+const { latitude, longitude } = Astro.props;
+const baseUrl = 'https://hb.afl.rakuten.co.jp/hgc/g0190dd6.uc73i72f.g0190dd6.uc73jb24/?pc='
+const goraUrl = 'https://search.travel.rakuten.co.jp/ds/undated/search?'
+const parameters = {
+  f_latitude: latitude,
+  f_longitude: longitude,
+  f_dai: 'japan',
+  f_cd: '003',
+  f_sort: 'hotel',
+  f_tab: 'map',
+  f_page: '1',
+  f_hyoji: '30',
+  f_km: '10.0',
+}
+const url = baseUrl + encodeURIComponent(`${goraUrl}${new URLSearchParams(parameters).toString()}`)
+---
+<a href={ url } target="_blank" rel="noopener noreferrer nofollow">
+  <button
+    type="button"
+    class={[
+      'from-green-400',
+      'via-green-500',
+      'to-green-600',
+      'focus:ring-green-300',
+      'dark:focus:ring-green-800',
+      'text-white',
+      'font-bold',
+      'bg-gradient-to-r',
+      'hover:bg-gradient-to-br',
+      'focus:ring-4',
+      'focus:outline-none',
+      'rounded-lg',
+      'py-5',
+      'w-full',
+    ].join(' ')}>
+    楽天トラベルで近くホテルを探す
+  </button>
+</a>

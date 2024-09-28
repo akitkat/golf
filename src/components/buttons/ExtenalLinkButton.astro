@@ -1,0 +1,25 @@
+---
+const { url, text } = Astro.props;
+---
+<a href={ url } target="_blank" rel="noopener noreferrer nofollow">
+  <button
+    type="button"
+    class={[
+      'from-green-400',
+      'via-green-500',
+      'to-green-600',
+      'focus:ring-green-300',
+      'dark:focus:ring-green-800',
+      'text-white',
+      'font-bold',
+      'bg-gradient-to-r',
+      'hover:bg-gradient-to-br',
+      'focus:ring-4',
+      'focus:outline-none',
+      'rounded-lg',
+      'py-5',
+      'w-full',
+    ].join(' ')}>
+    { text }
+  </button>
+</a>

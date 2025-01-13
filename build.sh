@@ -6,6 +6,10 @@ mkdir -p static/data
 wget "${JSON_URL_GOLF_COURSE}" -O 'golfCourses.json' &&
 mv -v golfCourses.json static/data/ &&
 
+# golfSchools.json
+wget "${JSON_URL_GOLF_SCHOOLS}" -O 'golfSchools.json' &&
+mv -v golfSchools.json static/data/ &&
+
 node lib/contentful/fetch.js &&
 
 astro build &&

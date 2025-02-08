@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import golfCourses from '../../static/data/golfSchools.json';
+import BasicInformation from './BasicInformation.astro';
+import SchoolDetailLinkButton from '../components/buttons/SchoolDetailLinkButton.astro';
+import SchoolLessonLinkButton from '../components/buttons/SchoolLessonLinkButton.astro';
+
+const props = Astro.props;
+const school = golfCourses.find(e => e.id === parseInt(props.id))
+---
+<div class="flex flex-col">
+  <div>
+    <a href={ school?.affiliateLink } target="_blank" class="no-underline" rel="noopener noreferrer nofollow">
+      <h2>{ school?.name }</h2>
+    </a>
+  </div>
+  <div class="w-full sm:w-4/5 h-64 mt-0 mx-auto overflow-hidden object-cover sm:m-auto">
+    <a href={ school?.affiliateLink } target="_blank" rel="noopener noreferrer nofollow">
+      <Image
+        class="object-cover h-64 m-auto w-full rounded-lg"
+        src={ school?.images ?? '' }
+        alt={ `${school?.name}` }
+        width="512"
+        height="512"
+      />
+    </a>
+  </div>
+  <p class="text-xs text-gray-500 mt-1 text-center">画像引用元: ゴルフメドレー</p>
+  <div class="pt-3.5">
+    <h3>
+      { `${props.keyword ? props.keyword : school?.name}の詳細` }
+    </h3>
+    <BasicInformation
+      rows={[
+        { title: '住所', value: school?.address },
+        { title: '電話番号', value: school?.phoneNumber },
+        { title: '電車でのアクセス', value: school?.nearestStation },
+        { title: '車でのアクセス', value: school?.roadStation },
+        { title: '営業時間(平日)', value: school?.weekdayBusinessHour },
+        { title: '営業時間(土日祝)', value: school?.holidayBusinessHour },
+        { title: '月額料金', value: school?.minimumMonthlyFee },
+        { title: '体験レッスン', value: school?.trialFee },
+        { title: 'レッスンタイプ', value: school?.lessonStyle },
+        { title: 'スタジオタイプ', value: school?.studioType },
+        { title: 'レンタルアイテム', value: school?.rentalItem },
+      ].filter(e => e.value !== '')}
+    />
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+    <SchoolDetailLinkButton url={ school?.affiliateLink } />
+    <SchoolLessonLinkButton url={ school?.affiliateLink } />
+  </div>
+</div>

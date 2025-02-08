@@ -18,14 +18,16 @@ const school = golfCourses.find(e => e.id === parseInt(props.id))
     <a href={ school?.affiliateLink } target="_blank" rel="noopener noreferrer nofollow">
       <Image
         class="object-cover h-64 m-auto w-full rounded-lg"
-        src={ school?.images ?? '' }
+        src={ school?.images && school?.images !== '' ? school?.images : '/images/no-image.png' }
         alt={ `${school?.name}` }
         width="512"
         height="512"
       />
     </a>
   </div>
-  <p class="text-xs text-gray-500 mt-1 text-center">画像引用元: ゴルフメドレー</p>
+  {school?.images && school?.images !== '' && (
+    <p class="text-xs text-gray-500 mt-1 text-center">画像引用元: ゴルフメドレー</p>
+  )}
   <div class="pt-3.5">
     <h3>
       { `${props.keyword ? props.keyword : school?.name}の詳細` }

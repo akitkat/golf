@@ -1,0 +1,15 @@
+---
+import GolfSchoolItem from "./GolfSchoolItem.astro";
+const { ids, keyword } = Astro.props;
+---
+
+{
+  ids.split(',').map((id: number) => {
+    return (
+      <GolfSchoolItem
+        id={id}
+        keyword={keyword}
+      />
+    )
+  })
+}
